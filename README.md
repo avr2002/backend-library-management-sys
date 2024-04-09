@@ -91,3 +91,9 @@ To deploy the application using Docker, follow these steps:
 docker pull avr2002/fastapi-app:latest
 docker run -d --name fastapi-app-container -p 8000:8000 avr2002/fastapi-app:latest
 ```
+
+
+## Improvements
+
+- Implement CI/CD using GitHub Actions
+- Write unit tests
