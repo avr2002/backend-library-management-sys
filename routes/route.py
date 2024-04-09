@@ -44,18 +44,26 @@ async def get_student(id: str):
 @router.patch("/students/{id}", status_code=status.HTTP_204_NO_CONTENT)
 async def update_student(id: str, student: UpdateStudent):
     student_data = student.dict(exclude_unset=True)
-    result = collection_name.find_one_and_update({"_id": ObjectId(id)},
-                                                 {"$set": student_data})
-    if result.modified_count == 0:
-        raise HTTPException(status_code=404, detail="Student not found")
+
+    existing_student = collection_name.find_one({"_id": ObjectId(id)})
+
+    if 'address' in student_data:
+        updated_address = student_data['address']
+        if not 'city' in updated_address:
+            updated_address['city'] = existing_student['address']['city']
+
+        if not 'country' in updated_address:
+            updated_address['country'] = existing_student['address']['country']
+
+        student_data['address'] = updated_address
+
+    collection_name.find_one_and_update({"_id": ObjectId(id)},
+                                        {"$set": student_data})
 
     return
 
 
 @router.delete("/students/{id}", status_code=status.HTTP_200_OK)
 async def delete_student(id: str):
-    result = collection_name.find_one_and_delete({"_id": ObjectId(id)})
-    if result.modified_count == 0:
-        raise HTTPException(status_code=204, detail="Student not found")
-
+    collection_name.find_one_and_delete({"_id": ObjectId(id)})
     return

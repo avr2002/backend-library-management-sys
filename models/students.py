@@ -13,7 +13,12 @@ class Student(BaseModel):
     address: Address = Field(..., description="Student address")
 
 
+class UpdateAddress(BaseModel):
+    city: Optional[str] = Field(None, description="City name", min_length=1)
+    country: Optional[str] = Field(None, description="Country name", min_length=1)
+
+
 class UpdateStudent(BaseModel):
     name: Optional[str] = Field(None, description="Student name", min_length=1)
     age: Optional[int] = Field(None, description="Student age", ge=1)
-    address: Optional[Address] = Field(None, description="Student address")
+    address: Optional[UpdateAddress] = Field(None, description="Student address")
