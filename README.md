@@ -83,3 +83,11 @@ To deploy the application using Docker, follow these steps:
    ```bash
    docker run -d --name library-api-container -p 8000:8000 library-management-api
    ```
+
+
+## Using Your Docker Hub Image
+
+```bash
+docker pull avr2002/fastapi-app:latest
+docker run -d --name fastapi-app-container -p 8000:8000 avr2002/fastapi-app:latest
+```
