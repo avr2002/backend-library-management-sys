@@ -4,6 +4,8 @@ This project implements a RESTful API for a Library Management System using Fast
 
 ## API Endpoints
 
+* [API REQUIREMENTS](https://app.swaggerhub.com/apis-docs/Cosmocloud/Backend-Intern-Hiring-Task/1.0.0)
+
 - `POST /students`: Create a new student record.
 - `GET /students`: Retrieve a list of students. Optional query parameters:
   - `country`: Filter students by country (string).
