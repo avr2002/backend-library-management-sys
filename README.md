@@ -85,7 +85,7 @@ To deploy the application using Docker, follow these steps:
    ```
 
 
-## Using Your Docker Hub Image
+## Docker Hub Image
 
 ```bash
 docker pull avr2002/fastapi-app:latest
